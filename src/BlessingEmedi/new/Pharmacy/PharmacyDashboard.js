@@ -22,7 +22,7 @@ const PharmacyDashboard = () => {
 
     const getUser = async()=>{
         try{
-        const res = await axios.get(`http://localhost:4400/api/pharm/get/${id}`)
+        const res = await axios.get(`https://emediback.herokuapp.com/api/pharm/get/${id}`)
         console.log(res.data.vendors)
         setData(res.data.vendors)
         // console.log(id)
@@ -51,7 +51,7 @@ const PharmacyDashboard = () => {
         </Divs>
         <Profile>
           <ImageHold>
-            <Image src={`http://localhost:4400/${data.Avatar}`} />
+            <Image src={data.Avatar} />
             {/* <Div></Div> */}
           </ImageHold>
           <NameHold>

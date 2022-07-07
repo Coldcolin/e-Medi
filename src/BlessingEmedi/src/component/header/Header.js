@@ -1,12 +1,17 @@
 import React, {useContext} from 'react'
 import styled from "styled-components"
 import log from "../../ASSETS/techFairLogo.svg"
-import {BiSearch} from "react-icons/bi"
+import Side from "../../../../Cynthia E-medi/src/Components/SideHeader"
+import { BiSearch, BiMenuAltLeft } from "react-icons/bi";
 import { HiOutlineMenuAlt2, HiMenu } from "react-icons/hi";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import {MdOutlinePerson} from "react-icons/md"
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useDispatch, useSelector } from 'react-redux'
+
+import {GrMenu} from "react-icons/gr"
+
+
 // import {GrMenu} from "react-icons/gr"
 import {Link} from "react-router-dom"
 import pic from "../pages/download.png"
@@ -30,7 +35,8 @@ const Header = () => {
     }
   })
   return (
-    <Container>
+  <>
+      <Container>
       <Wrapp>
         <LogoHold>
           <Logo src={log} />
@@ -59,15 +65,15 @@ const Header = () => {
               <Picture src={pic}/>
           </Profile> :saveUser.isUser? <Profile to="/">
             {
-              saveUser? <Picture src={`http://localhost:4400/${saveUser.Avatar}`}/>: <Picture src={pic}/>
+              saveUser? <Picture src={saveUser.Avatar}/>: <Picture src={pic}/>
             }
-          </Profile>: saveUser.isDoc? <Profile to="/">
+          </Profile>: saveUser.isDoc? <Profile to={`/detailpage/${saveUser._id}`}>
             {
-              saveUser? <Picture src={`http://localhost:4400/${saveUser.Avatar}`}/>: <Picture src={pic}/>
+              saveUser? <Picture src={saveUser.Avatar}/>: <Picture src={pic}/>
             }
           </Profile>: saveUser.isPharm? <Profile to={`/PharmPage/${saveUser._id}`}>
             {
-              saveUser? <Picture src={`http://localhost:4400/${saveUser.Avatar}`}/>: <Picture src={pic}/>
+              saveUser? <Picture src={saveUser.Avatar}/>: <Picture src={pic}/>
             }
           </Profile>: null
           }
@@ -79,12 +85,78 @@ const Header = () => {
             <HiMenu style={{ marginRight: "10px" }} />
           </Hld>
         </Right>
+        <Burger>
+            <Men
+              id="bar"
+              onClick={() => {
+                document.getElementById("display").style.top = "0px";
+                document.getElementById("bar").style.display = "none";
+                document.getElementById("times").style.display = "block";
+              }}
+            />
+            <CancleIcon
+              id="times"
+              onClick={() => {
+                document.getElementById("display").style.top = "-1000px";
+                document.getElementById("bar").style.display = "block";
+                document.getElementById("times").style.display = "none";
+              }}
+            />
+          </Burger>
       </Wrapp>
     </Container>
+    <SideMenu id="display">
+        <Side />
+      </SideMenu>
+  </>
   );
 }
 
 export default Header
+const SideMenu = styled.div`
+  width:250px;
+  height: 700px;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: -3000px;
+  z-index: 100;
+  transition: all 2s ease;
+  left:75%;
+  @media(max-width:800px){
+    left:3%;
+  }
+`;
+const CancleIcon = styled(BiMenuAltLeft)`
+  font-size: 30px;
+  display: none;
+  @media(max-width:800px){
+    font-size:20px;
+  }
+`;
+const Men = styled(GrMenu)`
+  font-size: 30px;
+  @media(max-width:800px){
+    font-size:20px;
+  }
+`;
+const Burger = styled.div`
+  display: none;
+  @media screen and (max-width: 768px) {
+    /* width: calc(100% - 30%); */
+    height: 70px;
+    padding-right: 10px;
+    left:90%;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* margin-bottom: 30px; */
+    position: fixed;
+    top: 0;
+    /* padding:0 10px; */
+  }
+`;
+
 
 const Container = styled.div`
   width: 100%;
@@ -99,46 +171,52 @@ const Container = styled.div`
 const Wrapp = styled.div`
   display: flex;
   width: 100%;
-  height:100%;
+  height: 100%;
   justify-content: space-between;
   /* background: peachpuff; */
   align-items: center;
- 
 `;
 const Logo = styled.img`
-width:100px;
-  height:60px;
-  
+  width: 100px;
+  height: 60px;
+  @media (max-width:800px){
+    width:30%;
+  }
 `;
-const Icon1 = styled.div`
-
+const Icon1 = styled(AddShoppingCartIcon)`
+font-size: 30px;
+  @media(max-width:800px){
+    font-size:20px;
+  }
 `;
 const Icon2 = styled.div``;
 const Icon3 = styled.div``;
 const Icon4 = styled.div``;
 
-
 const Hld = styled.div`
-width: 11%;
-/* background: black; */
-border-right: 1px solid black;
-display: flex;
-justify-content:center;
-align-items: center;
-font-size: 20px;
-display:none;
-:hover{
-  cursor: pointer;
-}
-`
+  width: 11%;
+  /* background: plum; */
+  border-right: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  display: none;
+  :hover {
+    cursor: pointer;
+  }
+`;
 const Right = styled.div`
   /* background: pink; */
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 400px;
   @media (max-width: 800px) {
-    display:none;
+    width:50%;
+    justify-content: flex-start;
+    /* background:red; */
+  
   }
 `;
 
@@ -146,8 +224,8 @@ const Navig = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height:100%;
-  width:40%;
+  height: 100%;
+  width: 50%;
   /* background:brown; */
   @media (max-width: 800px) {
     display: none;
@@ -155,8 +233,8 @@ const Navig = styled.div`
 `;
 const LogoHold = styled.div`
   width: 30%;
-  @media (max-width:800px){
-    width:70%;
+  @media (max-width: 800px) {
+    width: 70%;
   }
   /* background: red; */
   /* color: #fff; */
@@ -164,11 +242,14 @@ const LogoHold = styled.div`
   div {
     padding: 0;
     margin: 0;
-      font-size: 25px;
-      font-weight:600;
-  
+    font-size: 25px;
+    font-weight: 600;
+    @media (max-width:800px){
+      font-size:20px;
+    }
   }
   align-items: center;
+
 `;
 const Nav = styled(Link)`
   text-decoration: none;
@@ -181,7 +262,7 @@ const Nav = styled(Link)`
 
   &.active {
     border-bottom: 1px solid skyblue;
-    color:skyblue;
+    color: skyblue;
 
     transition: all 550ms;
     transform: scale(1);
@@ -203,19 +284,61 @@ const Button = styled(Link)`
   justify-content: center;
   border-radius: 3px;
   color: #fff;
-  
+
   &.active {
-      height: 3px;
-      width: 80%;
-      transition: all 550ms;
-      transform: scale(1);
-      transform-origin: center left;
-    }
-  
+    height: 3px;
+    width: 80%;
+    transition: all 550ms;
+    transform: scale(1);
+    transform-origin: center left;
+  }
+
   :hover {
     cursor: pointer;
     transform: scale(1.02);
-   
+  }
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+
+`;
+
+const Div = styled(Link)`
+  color: black;
+  text-decoration: none;
+  width: 100px;
+  height: 60px;
+  /* background-color: grey; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: -15px;
+  }
+`;
+
+const Profile = styled(Link)`
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: 2px solid black;
+  @media (max-width:800px){
+    width:30px;
+    height:30px;
+  }
+`;
+const Picture = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  object-fit: cover;
+  @media (max-width:800px){
+    width:100%;
+    height:100%;
   }
 `;
 const Butto = styled.div`
@@ -228,48 +351,22 @@ const Butto = styled.div`
   justify-content: center;
   border-radius: 3px;
   color: #fff;
-  
+
   &.active {
-      height: 3px;
-      width: 80%;
-      transition: all 550ms;
-      transform: scale(1);
-      transform-origin: center left;
-    }
-  
+    height: 3px;
+    width: 80%;
+    transition: all 550ms;
+    transform: scale(1);
+    transform-origin: center left;
+  }
+
   :hover {
     cursor: pointer;
     transform: scale(1.02);
-   
   }
+  @media (max-width: 800px) {
+    display: none;
+  }
+
+  
 `;
-
-const Div = styled(Link)`
-  width: 100px;
-  height: 60px;
-  /* background-color: grey; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  text-decoration: none;
-
-  div{
-    font-size: 18px;
-    font-weight: 600;
-    margin-top: -15px;
-  }
-`
-
-const Profile = styled(Link)`
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  border: 2px solid black;
-`
-const Picture = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  object-fit: cover;
-`

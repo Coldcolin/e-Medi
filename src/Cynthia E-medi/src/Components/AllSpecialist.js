@@ -6,7 +6,7 @@ const AllSpecialist = () => {
 
   const getDrugs = async()=>{
     try{
-      const res = await axios.get("localhost:4400/api/pharm/allVendors?Location=")
+      const res = await axios.get("https://emediback.herokuapp.com/api/pharm/allVendors?Location=")
       setData(res.data.data)
       console.log(res)
     }catch(error){

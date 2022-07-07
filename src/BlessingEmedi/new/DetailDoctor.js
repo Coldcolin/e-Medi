@@ -13,7 +13,7 @@ const DetailDoctor = () => {
 
 const getDocs = async()=>{
   try{
-    const res = await axios.get("http://localhost:4400/api/doctor/docs")
+    const res = await axios.get("https://emediback.herokuapp.com/api/doctor/docs")
     setData(res.data.doctors)
     console.log(res.data.doctors)
   }catch(error){
@@ -76,7 +76,7 @@ useEffect(()=>{
                         <Right>
                           <Profile>
                             <ImageHold>
-                              <Image src={`http://localhost:4400/${props.Avatar}`} />
+                              <Image src={props.Avatar} />
                               {/* <Div></Div> */}
                             </ImageHold>
                             <NameHold>

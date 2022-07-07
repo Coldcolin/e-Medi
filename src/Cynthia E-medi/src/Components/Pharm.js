@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styled from 'styled-components'
 import MedicationIcon from '@mui/icons-material/Medication';
 import { Link } from 'react-router-dom';
@@ -7,15 +7,17 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import Header from "./Header"
 import axios from "axios"
 import image from "../../ASSETS/190624-culturally-competent-care-3-khn-ew-349p.jpg"
+import { AuthContext } from "../../../Components/Global/AuthProvider";
 
 
 const Home = () =>{
+    const { saveUser } = useContext(AuthContext);
 const [data, setData] = useState([])
 const [value, setValue] = useState("")
 
 const getPharms = async()=>{
     try{
-        const res = await axios.get("http://localhost:4400/api/pharm/allVendors")
+        const res = await axios.get("https://emediback.herokuapp.com/api/pharm/allVendors")
         console.log(res.data.vendors);
         setData(res.data.vendors)
     }catch(error){
@@ -26,7 +28,7 @@ const getPharms = async()=>{
 const handleSearch = async (e)=>{
     try{
         e.preventDefault()
-        const res = await axios.get(`http://localhost:4400/api/pharm/allVendors?Location=${value}`)
+        const res = await axios.get(`https://emediback.herokuapp.com/api/pharm/allVendors?Location=${value}`)
         console.log(res.data.vendors);
         setData(res.data.vendors)
         setValue("")
@@ -90,7 +92,7 @@ useEffect(()=>{
                         data?.map((props)=>(
                             <Pharms key={props._id}>
                                 <Info>
-                                <Iconer src={`http://localhost:4400/${props.Avatar}`}/>
+                                <Iconer src={props.Avatar}/>
                                 <Holding>
                                 <Name>{props.name}</Name>
                                     <Dis><MedicationIcon/> Pharmacy</Dis>
@@ -99,7 +101,9 @@ useEffect(()=>{
                                 <Locate>Location: {props.Location}</Locate>
                                 <Actions>
                                     <View to={`/pharmdet/${props._id}`}>View Profile</View>
-                                    <Views to={`/Products/${props._id}`}> <AddBoxIcon/>Buy Drugs</Views>
+                                    {
+                                        saveUser? <Views to={`/Products/${props._id}`}> <AddBoxIcon/>Buy Drugs</Views>: <Views to="/Login"> <AddBoxIcon/>Buy Drugs</Views>
+                                    }
                                 </Actions>
                            </Pharms>
                         ))

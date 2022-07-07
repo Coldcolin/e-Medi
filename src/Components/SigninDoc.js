@@ -37,7 +37,7 @@ const SigninDoc = () =>{
             setToggle(!toggle)
         const {email, password} = data
 
-        const res = await axios.post("http://localhost:4400/api/doctor/login", { 
+        const res = await axios.post("https://emediback.herokuapp.com/api/doctor/login", { 
             email, password
         })
         localStorage.setItem("emedi", JSON.stringify(res.data.data))

@@ -217,7 +217,7 @@ const Hold = styled.div`
 width:100%;
 display:flex;
 padding: 15px 0;
-justify-content:space-between;
+justify-content:space-around;
 /* align-items: center; */
 height:100%;
 flex-wrap:wrap;

@@ -23,7 +23,7 @@ const DetailPage = () => {
 
     const getUser = async()=>{
         try{
-        const res = await axios.get(`http://localhost:4400/api/pharm/get/${id}`)
+        const res = await axios.get(`https://emediback.herokuapp.com/api/pharm/get/${id}`)
         // console.log(res.data)
         setData(res.data.vendors)
         // console.log(id)
@@ -68,7 +68,7 @@ const DetailPage = () => {
            <NewWrapper>
                
             <Left>
-                <HeroHold src={`http://localhost:4400/${data.Avatar}`}/>
+                <HeroHold src={data.Avatar}/>
                 <Title style={{
                     lineHeight:"50px"
                 }}>

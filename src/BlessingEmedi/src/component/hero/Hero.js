@@ -59,7 +59,7 @@ const Absolute = styled.div`
   width: 600px;
   height: 60px;
   opacity: 0.6;
-  top: 450px;
+  top: 500px;
 
   left: 250px;
   display: flex;

@@ -22,7 +22,7 @@ const Cart = () => {
 //   const showData = myData.data
 
   const fetchData = async () => {
-    const res = await axios.get("http://localhost:4400/Store/Show");
+    const res = await axios.get("https://emediback.herokuapp.com/Store/Show");
 
     dispatch(addProduct(res.data.data));
 
@@ -45,7 +45,7 @@ return (
           <Card>
             {myData.map((props) => (
               <Holder key={props._id}>
-                <Image src={`http://localhost:4400/${props.Image}`} />
+                <Image src={props.Image} />
 
                 <Div>
                   <TitleHolder>

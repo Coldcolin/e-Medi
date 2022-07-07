@@ -28,7 +28,9 @@ const globState = createSlice({
       const remove = state.cart.filter(el => el._id !== payload._id)
       state.cart = remove
     },
-
+    clearCart: (state, { payload })=>{
+      state.cart = []
+    },
     changeItem: (state, { payload }) =>{
       const checkCart = state.cart.findIndex((el) => el._id === payload._id);
       const check = state.cart[checkCart].QTY
@@ -72,10 +74,11 @@ const globState = createSlice({
     },
     signOut: (state) => {
       state.Id = "";
+      state.cart = []
     },
   },
 });
 
-export const { addProduct, addToCart, removeCart, changeItem, total, addId,  removeId, changeId, signOut} = globState.actions;
+export const { addProduct, addToCart, removeCart, changeItem, total, addId,  removeId, changeId, signOut, clearCart} = globState.actions;
 
 export default globState.reducer;

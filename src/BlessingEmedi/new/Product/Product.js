@@ -18,7 +18,7 @@ const DetailDoctor = () => {
 
   const getDrugs = async()=>{
     try{
-      const res = await axios.get(`http://localhost:4400/Store/get/${id}`)
+      const res = await axios.get(`https://emediback.herokuapp.com/Store/get/${id}`)
       console.log(res.data.data)
       dispatch(addProduct(res.data.data));
       setData(res.data.data)
@@ -108,7 +108,7 @@ const DetailDoctor = () => {
                 <Card2 key={props._id}>
               <Right>
                 <Profile2>
-                  <Image2 src={`http://localhost:4400/${props.Image}`} />
+                  <Image2 src={props.Image} />
                 </Profile2>
                 <Text>
                   <NameHold>

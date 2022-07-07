@@ -3,10 +3,12 @@ import React, { useState } from "react"
 import PaystackPop from "@paystack/inline-js"
 import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
+import { clearCart } from "./Global/globState";
 
 
 const PaystackIntegration = ()=>{
     const showTotal = useSelector((state)=> state.reducer.total)
+    const dispatch = useDispatch();
 
     // const config = {
     //     reference: (new Date()).getTime().toString(),
@@ -37,6 +39,7 @@ const PaystackIntegration = ()=>{
       amount: showTotal * 100,
       email: "emedipharm92@gmail.com",
     })
+    // dispatch(clearCart());
     }
       return (
         <div>

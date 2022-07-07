@@ -63,7 +63,7 @@ const SignUp = () =>{
             }
         }
     
-        await axios.post("http://localhost:4400/api/register", formData, config)
+        await axios.post("https://emediback.herokuapp.com/api/register", formData, config)
         reset()
         navigate("/Signed")
         }catch(error){
@@ -142,7 +142,7 @@ const SignUp = () =>{
                             color:"white"
                         }}>Login..</H5></Hall>
                         <Div>
-                        <Circles style={{
+                        {/* <Circles style={{
                             "backgroundColor":"#D65045",
                         }}>
                             <GoogleIcon style={{
@@ -170,7 +170,7 @@ const SignUp = () =>{
                             <TwitterIcon style={{
                                 color:"white"
                             }}/>
-                        </Circles>
+                        </Circles> */}
                         </Div>
                     </Social>
                 </FormHold>

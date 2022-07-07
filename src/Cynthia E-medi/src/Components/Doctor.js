@@ -12,7 +12,7 @@ const Home = (props) =>{
 
     const getData = async()=>{
         try{
-            const res = await axios.get("http://localhost:4400/api/doctor/docs")
+            const res = await axios.get("https://emediback.herokuapp.com/api/doctor/docs")
             console.log(res.data.doctors)
             setData(res.data.doctors)
         }catch(err){}
@@ -63,7 +63,7 @@ const Home = (props) =>{
                             data?.map((props)=>(
                                 <Pharms key={props._id}>
                                 <Info>
-                                <Iconer src={`http://localhost:4400/${props.Avatar}`}/>
+                                <Iconer src={props.Avatar}/>
                                 <Holding>
                                 <Name>{props.name}</Name>
                                     <Dis><MedicationIcon/> Doctor</Dis>

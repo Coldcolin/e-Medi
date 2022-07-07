@@ -64,7 +64,7 @@ const Register = () => {
             }
         }
     
-        await axios.post("http://localhost:4400/api/pharm/register", formData, config)
+        await axios.post("https://emediback.herokuapp.com/api/pharm/register", formData, config)
         reset()
         navigate("/PharmPage")
         }catch(error){
