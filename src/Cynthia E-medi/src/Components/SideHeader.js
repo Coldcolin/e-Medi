@@ -1,8 +1,23 @@
 import React from 'react'
 import styled from "styled-components"
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useSelector, useDispatch } from "react-redux";
+import { signOut, clearCart } from "../../../Components/Global/globState";
 
 const SideHeader = () => {
+  const dispatch = useDispatch();
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
   return (
     <Container>
       <Wrapp>
@@ -12,6 +27,18 @@ const SideHeader = () => {
           {/* <Nav to="/">About Us</Nav> */}
           <Nav to="/viewAlDocs">Consult</Nav>
           <Nav to="/pharm">Pharmacy</Nav>
+          <Navi 
+           onClick={() => {
+                dispatch(signOut());
+                Toast.fire({
+                  icon: "success",
+                  title: "Logged out successfully",
+                });
+                localStorage.removeItem("emedi");
+                window.location.reload();
+                dispatch(clearCart());
+              }}
+          >Pharmacy</Navi>
           </Navig>
           {/* <Hld style={{ border: "none" }}></Hld> */}
         </Right>
@@ -72,6 +99,33 @@ const Right = styled.div`
   }
 `;
 const Nav = styled(Link)`
+  text-decoration: none;
+  /* margin-right: 25px; */
+  height: 60%;
+  /* background:red; */
+  display: flex;
+  align-items: center;
+  /* color: #009587; */
+  color:#fff;
+  :hover{
+    background:#009587;
+  }
+
+  &.active {
+    border-bottom: 1px solid skyblue;
+    color: skyblue;
+
+    transition: all 550ms;
+    transform: scale(1);
+    transform-origin: center left;
+  }
+
+  :hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
+`;
+const Navi = styled.div`
   text-decoration: none;
   /* margin-right: 25px; */
   height: 60%;

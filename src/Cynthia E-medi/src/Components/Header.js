@@ -79,7 +79,7 @@ const Header = () => {
               )}
             </Profile>
           ) : saveUser.isDoc ? (
-            <Profile to={saveUser._id}>
+            <Profile to={`/detailpage/${saveUser._id}`}>
               {saveUser ? (
                 <Picture src={saveUser.Avatar} />
               ) : (
