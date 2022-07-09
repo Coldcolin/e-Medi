@@ -115,7 +115,7 @@ const DetailDoctor = () => {
                     <Name>{props.name}</Name>
                     <NameTag>{props.API}</NameTag>
                   </NameHold>
-                  <span>#{props.price}</span>
+                  <span>#{props.Price}</span>
                 </Text>
                 <End>
                   <div>

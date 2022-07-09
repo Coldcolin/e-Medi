@@ -213,7 +213,7 @@ const Button = styled.button`
 const Divs = styled.div`
     padding: 15px 20px;
     border-radius: 3px;
-    background: coral;
+    background: #1069e1;
     color: white;
     font-size:25px;
     font-family: poppins;

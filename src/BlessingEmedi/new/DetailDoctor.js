@@ -372,7 +372,7 @@ const Div1 = styled.div`
 const Topic = styled.div``;
 const Card = styled.div`
   width: 300px;
-  height: 150px;
+  min-height: 150px;
   display: flex;
   background: #fff;
   align-items: flex-start;
