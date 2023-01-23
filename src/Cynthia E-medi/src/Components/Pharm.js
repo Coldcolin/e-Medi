@@ -17,7 +17,7 @@ const [value, setValue] = useState("")
 
 const getPharms = async()=>{
     try{
-        const res = await axios.get("https://emediback.herokuapp.com/api/pharm/allVendors")
+        const res = await axios.get("https://e-medi.onrender.com/api/pharm/allVendors")
         console.log(res.data.vendors);
         setData(res.data.vendors)
     }catch(error){
@@ -28,7 +28,7 @@ const getPharms = async()=>{
 const handleSearch = async (e)=>{
     try{
         e.preventDefault()
-        const res = await axios.get(`https://emediback.herokuapp.com/api/pharm/allVendors?Location=${value}`)
+        const res = await axios.get(`https://e-medi.onrender.com/api/pharm/allVendors?Location=${value}`)
         console.log(res.data.vendors);
         setData(res.data.vendors)
         setValue("")

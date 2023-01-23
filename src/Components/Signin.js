@@ -37,7 +37,7 @@ const SignUp = () =>{
             setToggle(!toggle)
         const {email, password} = data
 
-        const res = await axios.post("https://emediback.herokuapp.com/api/login", { 
+        const res = await axios.post("https://e-medi.onrender.com/api/login", { 
             email, password
         })
         // console.log(res.data)

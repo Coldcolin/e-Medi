@@ -22,7 +22,7 @@ const DetailPage = () => {
 
     const getUser = async()=>{
         try{
-        const res = await axios.get(`https://emediback.herokuapp.com/api/doctor/get/${id}`)
+        const res = await axios.get(`https://e-medi.onrender.com/api/doctor/get/${id}`)
         console.log(res.data.data)
         setData(res.data.data)
         // console.log(id)

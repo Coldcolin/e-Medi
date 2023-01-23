@@ -63,7 +63,7 @@ const SignUp = () =>{
             }
         }
     
-        await axios.post("https://emediback.herokuapp.com/api/register", formData, config)
+        await axios.post("https://e-medi.onrender.com/api/register", formData, config)
         reset()
         navigate("/Signed")
         }catch(error){

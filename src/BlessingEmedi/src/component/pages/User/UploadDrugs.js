@@ -63,7 +63,7 @@ const UploadDrugs = () => {
             }
         }
     
-        await axios.post(`https://emediback.herokuapp.com/Store/create/${id}`, formData, config)
+        await axios.post(`https://e-medi.onrender.com/Store/create/${id}`, formData, config)
         reset()
         // navigate("/")
         }catch(error){

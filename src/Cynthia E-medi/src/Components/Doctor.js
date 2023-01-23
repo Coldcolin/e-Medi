@@ -12,7 +12,7 @@ const Home = (props) =>{
 
     const getData = async()=>{
         try{
-            const res = await axios.get("https://emediback.herokuapp.com/api/doctor/docs")
+            const res = await axios.get("https://e-medi.onrender.com/api/doctor/docs")
             console.log(res.data.doctors)
             setData(res.data.doctors)
         }catch(err){}

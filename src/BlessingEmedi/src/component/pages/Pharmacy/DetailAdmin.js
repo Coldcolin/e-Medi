@@ -9,7 +9,7 @@ const DetailAdmin = () => {
 
   const getUser = async()=>{
       try{
-      const res = await axios.get(`https://emediback.herokuapp.com/api/pharm/get/${id}`)
+      const res = await axios.get(`https://e-medi.onrender.com/api/pharm/get/${id}`)
       console.log(res.data.vendors)
       setData(res.data.vendors)
       // console.log(id)
